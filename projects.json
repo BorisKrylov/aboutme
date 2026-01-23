@@ -1,0 +1,102 @@
+{
+  "featured": {
+    "en": [
+      {
+        "title": "Mergenarium (2023)",
+        "description": "An infinite merge game with emoji characters",
+        "link": "https://github.com/homechaos",
+        "mediaType": "image",
+        "mediaUrl": ""
+      },
+      {
+        "title": "Featured Project 2",
+        "description": "Description of your best project",
+        "link": "https://example.com",
+        "mediaType": "video",
+        "mediaUrl": ""
+      }
+    ],
+    "ru": [
+      {
+        "title": "Mergenarium (2023)",
+        "description": "Игра с бесконечным мерджем смайликов",
+        "link": "https://github.com/homechaos",
+        "mediaType": "image",
+        "mediaUrl": ""
+      },
+      {
+        "title": "Избранный проект 2",
+        "description": "Описание вашего лучшего проекта",
+        "link": "https://example.com",
+        "mediaType": "video",
+        "mediaUrl": ""
+      }
+    ]
+  },
+  "all": {
+    "en": [
+      {
+        "title": "Mergenarium (2023)",
+        "description": "An infinite merge game with emoji characters",
+        "link": "https://github.com/homechaos",
+        "iconUrl": ""
+      },
+      {
+        "title": "Project Alpha",
+        "description": "Mobile puzzle game",
+        "link": "https://example.com",
+        "iconUrl": ""
+      },
+      {
+        "title": "Project Beta",
+        "description": "AR experience application",
+        "link": "https://example.com",
+        "iconUrl": ""
+      },
+      {
+        "title": "Project Gamma",
+        "description": "Educational game for kids",
+        "link": "https://example.com",
+        "iconUrl": ""
+      },
+      {
+        "title": "Project Delta",
+        "description": "Multiplayer strategy game",
+        "link": "https://example.com",
+        "iconUrl": ""
+      }
+    ],
+    "ru": [
+      {
+        "title": "Mergenarium (2023)",
+        "description": "Игра с бесконечным мерджем смайликов",
+        "link": "https://github.com/homechaos",
+        "iconUrl": ""
+      },
+      {
+        "title": "Проект Альфа",
+        "description": "Мобильная головоломка",
+        "link": "https://example.com",
+        "iconUrl": ""
+      },
+      {
+        "title": "Проект Бета",
+        "description": "AR приложение",
+        "link": "https://example.com",
+        "iconUrl": ""
+      },
+      {
+        "title": "Проект Гамма",
+        "description": "Обучающая игра для детей",
+        "link": "https://example.com",
+        "iconUrl": ""
+      },
+      {
+        "title": "Проект Дельта",
+        "description": "Многопользовательская стратегия",
+        "link": "https://example.com",
+        "iconUrl": ""
+      }
+    ]
+  }
+}

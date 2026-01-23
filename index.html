@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boris Krylov - Unity Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-black: #0a0a0a;
+            --text-white: #ffffff;
+            --purple: #a855f7;
+            --purple-glow: rgba(168, 85, 247, 0.5);
+            --orange: #ff6b35;
+            --orange-glow: rgba(255, 107, 53, 0.5);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 60%);
+            animation: backgroundPulse 8s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { 
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 1000;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            background: rgba(168, 85, 247, 0.1);
+            border: 2px solid var(--purple);
+            color: var(--text-white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: var(--purple);
+            box-shadow: 0 0 20px var(--purple-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Project Block */
+        .project-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            align-items: center;
+            padding: 4rem 2rem;
+            gap: 3rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .project-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-block:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .project-block:nth-child(even) .media {
+            order: 2;
+        }
+
+        .project-block:nth-child(even) .content {
+            order: 1;
+        }
+
+        .media {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 40px var(--purple-glow);
+            transition: all 0.3s ease;
+        }
+
+        .media:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 60px var(--orange-glow);
+        }
+
+        .media img, .media video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            max-height: 600px;
+            object-fit: cover;
+        }
+
+        /* Special styling for hero photo */
+        .hero .media img {
+            max-height: 500px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--orange) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            border-radius: 16px;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--purple);
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .project-link {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--text-white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--orange-glow);
+        }
+
+        .project-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px var(--orange-glow);
+            background: #ff8555;
+        }
+
+        /* About Page */
+        .about-page {
+            display: none;
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-page.active {
+            display: block;
+        }
+
+        .about-page h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .about-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skills-table {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .skill-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .skill-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-column li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 3px solid var(--purple);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .skill-column li:hover {
+            background: rgba(168, 85, 247, 0.2);
+            border-left-color: var(--orange);
+            transform: translateX(5px);
+        }
+
+        /* Projects List */
+        .projects-list-section {
+            margin-top: 4rem;
+        }
+
+        .projects-list-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .projects-list {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: rgba(168, 85, 247, 0.1);
+            border: 2px solid var(--purple);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: rgba(168, 85, 247, 0.15);
+            box-shadow: 0 0 20px var(--purple-glow);
+            transform: translateY(-2px);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--orange) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+        }
+
+        .project-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .project-info h3 {
+            font-size: 1.3rem;
+            color: var(--text-white);
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
+
+        .project-link-btn {
+            background: var(--orange);
+            color: var(--text-white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .project-link-btn:hover {
+            background: #ff8555;
+            box-shadow: 0 0 20px var(--orange-glow);
+            transform: scale(1.05);
+        }
+
+        /* Contacts Page */
+        .contacts-page {
+            display: none;
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contacts-page.active {
+            display: block;
+        }
+
+        .contacts-page h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contacts {
+            display: grid;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            background: rgba(168, 85, 247, 0.1);
+            border: 2px solid var(--purple);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(168, 85, 247, 0.2);
+            box-shadow: 0 0 20px var(--purple-glow);
+            transform: translateX(10px);
+        }
+
+        .contact-item a {
+            color: var(--orange);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid var(--orange);
+            color: var(--text-white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .back-btn:hover {
+            background: var(--orange);
+            box-shadow: 0 0 20px var(--orange-glow);
+            transform: translateY(-2px);
+        }
+
+        .center-btn {
+            text-align: center;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            position: relative;
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(10, 10, 10, 0.95);
+            border: 2px solid var(--purple);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lang-dropdown.active {
+            display: block;
+        }
+
+        .lang-option {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-option:hover {
+            background: var(--purple);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-block {
+                grid-template-columns: 1fr !important;
+                min-height: auto;
+                padding: 2rem 1rem;
+            }
+
+            .project-block:nth-child(even) .media,
+            .project-block:nth-child(even) .content {
+                order: 0;
+            }
+
+            .content h1 {
+                font-size: 2.5rem;
+            }
+
+            .content h2 {
+                font-size: 2rem;
+            }
+
+            nav {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .skills-table {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .project-item {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: center;
+            }
+
+            .project-info h3 {
+                white-space: normal;
+            }
+
+            .project-link-btn {
+                width: 100%;
+            }
+        }
+
+        .main-page {
+            display: block;
+        }
+
+        .main-page.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-btn" id="aboutBtn" data-en="About Me" data-ru="Обо мне">About Me</a>
+        <a href="#" class="nav-btn" id="contactsBtn" data-en="Contacts" data-ru="Контакты">Contacts</a>
+        <div class="lang-selector">
+            <button class="nav-btn" id="langBtn">EN</button>
+            <div class="lang-dropdown" id="langDropdown">
+                <div class="lang-option" data-lang="en">English</div>
+                <div class="lang-option" data-lang="ru">Русский</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Page -->
+    <div class="main-page" id="mainPage">
+        <!-- Hero Section -->
+        <section class="project-block hero visible">
+            <div class="media">
+                <div class="placeholder">Your Photo</div>
+            </div>
+            <div class="content">
+                <h1 data-en="Boris Krylov" data-ru="Борис Крылов">Boris Krylov</h1>
+                <p data-en="Middle+ Unity Developer with extensive experience in game development, creating engaging and innovative gaming experiences." 
+                   data-ru="Middle+ Unity разработчик с большим опытом в разработке игр, создающий увлекательные и инновационные игровые проекты.">
+                   Middle+ Unity Developer with extensive experience in game development, creating engaging and innovative gaming experiences.
+                </p>
+            </div>
+        </section>
+
+        <!-- Projects will be loaded here -->
+        <div id="projectsContainer"></div>
+    </div>
+
+    <!-- About Page -->
+    <div class="about-page" id="aboutPage">
+        <h1 data-en="About Me" data-ru="Обо мне">About Me</h1>
+        
+        <div class="about-description">
+            <p data-en="I am a Unity developer with 3 years of professional experience in game development. Throughout my career, I have worked on various projects ranging from mobile games to complex simulation systems. I specialize in creating engaging gameplay mechanics, optimizing performance, and implementing scalable architectures. My expertise includes modern Unity frameworks, clean code principles, and cross-platform development. I am passionate about creating immersive gaming experiences and constantly learning new technologies to improve my craft."
+               data-ru="Я Unity разработчик с 3-летним профессиональным опытом в разработке игр. За время своей карьеры я работал над различными проектами, от мобильных игр до сложных систем симуляции. Я специализируюсь на создании увлекательных игровых механик, оптимизации производительности и реализации масштабируемых архитектур. Мой опыт включает современные Unity фреймворки, принципы чистого кода и кросс-платформенную разработку. Я увлечен созданием захватывающих игровых впечатлений и постоянно изучаю новые технологии для совершенствования своего мастерства.">
+                I am a Unity developer with 3 years of professional experience in game development. Throughout my career, I have worked on various projects ranging from mobile games to complex simulation systems. I specialize in creating engaging gameplay mechanics, optimizing performance, and implementing scalable architectures. My expertise includes modern Unity frameworks, clean code principles, and cross-platform development. I am passionate about creating immersive gaming experiences and constantly learning new technologies to improve my craft.
+            </p>
+        </div>
+
+        <div class="skills-table">
+            <div class="skill-column">
+                <h3 data-en="Languages" data-ru="Языки">Languages</h3>
+                <ul>
+                    <li>C#</li>
+                    <li>Python</li>
+                    <li>Lua</li>
+                </ul>
+            </div>
+            <div class="skill-column">
+                <h3 data-en="Platforms" data-ru="Платформы">Platforms</h3>
+                <ul>
+                    <li>Android</li>
+                    <li>iOS</li>
+                    <li>WebGL</li>
+                </ul>
+            </div>
+            <div class="skill-column">
+                <h3 data-en="Tech Stack" data-ru="Стек">Tech Stack</h3>
+                <ul>
+                    <li>DI, Zenject, VContainer</li>
+                    <li>UniRx, R3</li>
+                    <li>Addressables</li>
+                    <li>DoTween</li>
+                    <li>UI Toolkit</li>
+                    <li>ECS DOTS</li>
+                    <li>MessagePipe</li>
+                    <li>Cinemachine</li>
+                    <li>UniTask</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="projects-list-section">
+            <h2 data-en="All Projects I've Worked On" data-ru="Все мои проекты, над которыми я работал">All Projects I've Worked On</h2>
+            <div class="projects-list" id="allProjectsList">
+                <!-- Projects will be loaded here -->
+            </div>
+        </div>
+
+        <div class="center-btn">
+            <a href="#" class="back-btn" id="backBtnAbout" data-en="← Back to Projects" data-ru="← Назад к проектам">← Back to Projects</a>
+        </div>
+    </div>
+
+    <!-- Contacts Page -->
+    <div class="contacts-page" id="contactsPage">
+        <h1 data-en="Contacts" data-ru="Контакты">Contacts</h1>
+        
+        <div class="contacts">
+            <div class="contact-item">
+                <span>📧</span>
+                <a href="mailto:your.email@example.com">your.email@example.com</a>
+            </div>
+            <div class="contact-item">
+                <span>💬</span>
+                <a href="https://t.me/yourusername" target="_blank">Telegram</a>
+            </div>
+            <div class="contact-item">
+                <span>💼</span>
+                <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+            </div>
+            <div class="contact-item">
+                <span>🐙</span>
+                <a href="https://github.com/homechaos" target="_blank">GitHub</a>
+            </div>
+            <div class="contact-item">
+                <span>📄</span>
+                <a href="cv_en.pdf" target="_blank" data-en="Resume (English)" data-ru="Резюме (English)">Resume (English)</a>
+            </div>
+            <div class="contact-item">
+                <span>📄</span>
+                <a href="cv_ru.pdf" target="_blank" data-en="Resume (Russian)" data-ru="Резюме (Русский)">Resume (Russian)</a>
+            </div>
+        </div>
+
+        <div class="center-btn">
+            <a href="#" class="back-btn" id="backBtnContacts" data-en="← Back to Projects" data-ru="← Назад к проектам">← Back to Projects</a>
+        </div>
+    </div>
+
+    <script>
+        // Projects will be loaded from projects.json
+        let featuredProjects = { en: [], ru: [] };
+        let allProjects = { en: [], ru: [] };
+        let currentLang = 'en';
+
+        // Fallback projects for local development (when CORS blocks fetch)
+        const fallbackProjects = {
+            featured: {
+                en: [
+                    {
+                        title: "Mergenarium (2023)",
+                        description: "An infinite merge game with emoji characters",
+                        link: "https://github.com/homechaos",
+                        mediaType: "image",
+                        mediaUrl: ""
+                    },
+                    {
+                        title: "Featured Project 2",
+                        description: "Description of your best project",
+                        link: "https://example.com",
+                        mediaType: "video",
+                        mediaUrl: ""
+                    }
+                ],
+                ru: [
+                    {
+                        title: "Mergenarium (2023)",
+                        description: "Игра с бесконечным мерджем смайликов",
+                        link: "https://github.com/homechaos",
+                        mediaType: "image",
+                        mediaUrl: ""
+                    },
+                    {
+                        title: "Избранный проект 2",
+                        description: "Описание вашего лучшего проекта",
+                        link: "https://example.com",
+                        mediaType: "video",
+                        mediaUrl: ""
+                    }
+                ]
+            },
+            all: {
+                en: [
+                    {
+                        title: "Mergenarium (2023)",
+                        description: "An infinite merge game with emoji characters",
+                        link: "https://github.com/homechaos",
+                        iconUrl: ""
+                    },
+                    {
+                        title: "Project Alpha",
+                        description: "Mobile puzzle game",
+                        link: "https://example.com",
+                        iconUrl: ""
+                    },
+                    {
+                        title: "Project Beta",
+                        description: "AR experience application",
+                        link: "https://example.com",
+                        iconUrl: ""
+                    }
+                ],
+                ru: [
+                    {
+                        title: "Mergenarium (2023)",
+                        description: "Игра с бесконечным мерджем смайликов",
+                        link: "https://github.com/homechaos",
+                        iconUrl: ""
+                    },
+                    {
+                        title: "Проект Альфа",
+                        description: "Мобильная головоломка",
+                        link: "https://example.com",
+                        iconUrl: ""
+                    },
+                    {
+                        title: "Проект Бета",
+                        description: "AR приложение",
+                        link: "https://example.com",
+                        iconUrl: ""
+                    }
+                ]
+            }
+        };
+
+        // Load projects from JSON file
+        async function loadProjectsData() {
+            try {
+                const response = await fetch('projects.json');
+                const data = await response.json();
+                featuredProjects = data.featured;
+                allProjects = data.all;
+                console.log('✅ Projects loaded from projects.json');
+                loadProjects();
+            } catch (error) {
+                console.warn('⚠️ Could not load projects.json (normal for local file:// protocol)');
+                console.log('📦 Using fallback projects for local development');
+                // Use fallback for local development
+                featuredProjects = fallbackProjects.featured;
+                allProjects = fallbackProjects.all;
+                loadProjects();
+            }
+        }
+
+        // Load projects
+        function loadProjects() {
+            const container = document.getElementById('projectsContainer');
+            container.innerHTML = '';
+            
+            // Load only featured projects for main page
+            featuredProjects[currentLang].forEach((project, index) => {
+                const block = document.createElement('section');
+                block.className = 'project-block';
+                
+                let mediaContent = '';
+                if (project.mediaUrl) {
+                    if (project.mediaType === 'video') {
+                        mediaContent = `<video autoplay loop muted playsinline><source src="${project.mediaUrl}" type="video/mp4"></video>`;
+                    } else {
+                        mediaContent = `<img src="${project.mediaUrl}" alt="${project.title}">`;
+                    }
+                } else {
+                    mediaContent = '<div class="placeholder">Project Media</div>';
+                }
+                
+                block.innerHTML = `
+                    <div class="media">${mediaContent}</div>
+                    <div class="content">
+                        <h2>${project.title}</h2>
+                        <p>${project.description}</p>
+                        <a href="${project.link}" target="_blank" class="project-link">${currentLang === 'en' ? 'View Project' : 'Смотреть проект'}</a>
+                    </div>
+                `;
+                
+                container.appendChild(block);
+            });
+            
+            // Also load into About Me page
+            loadAllProjectsList();
+            
+            observeBlocks();
+        }
+
+        // Load all projects list for About Me page
+        function loadAllProjectsList() {
+            const listContainer = document.getElementById('allProjectsList');
+            listContainer.innerHTML = '';
+            
+            // Load ALL projects (not just featured)
+            allProjects[currentLang].forEach((project, index) => {
+                const item = document.createElement('div');
+                item.className = 'project-item';
+                
+                // Use icon if available, otherwise use emoji placeholder
+                let iconContent = '';
+                if (project.iconUrl) {
+                    iconContent = `<img src="${project.iconUrl}" alt="${project.title}">`;
+                } else {
+                    iconContent = '🎮';
+                }
+                
+                item.innerHTML = `
+                    <div class="project-icon">${iconContent}</div>
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                    </div>
+                    <a href="${project.link}" target="_blank" class="project-link-btn">${currentLang === 'en' ? 'Link' : 'Ссылка'}</a>
+                `;
+                
+                listContainer.appendChild(item);
+            });
+        }
+
+        // Intersection Observer for animations
+        function observeBlocks() {
+            const blocks = document.querySelectorAll('.project-block:not(.hero)');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            blocks.forEach(block => observer.observe(block));
+        }
+
+        // Language switching
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        const langOptions = document.querySelectorAll('.lang-option');
+
+        langBtn.addEventListener('click', () => {
+            langDropdown.classList.toggle('active');
+        });
+
+        langOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                currentLang = option.dataset.lang;
+                langBtn.textContent = currentLang.toUpperCase();
+                langDropdown.classList.remove('active');
+                updateLanguage();
+            });
+        });
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.textContent = el.dataset[currentLang];
+            });
+            loadProjects();
+        }
+
+        // Page navigation
+        const aboutBtn = document.getElementById('aboutBtn');
+        const contactsBtn = document.getElementById('contactsBtn');
+        const backBtnAbout = document.getElementById('backBtnAbout');
+        const backBtnContacts = document.getElementById('backBtnContacts');
+        const mainPage = document.getElementById('mainPage');
+        const aboutPage = document.getElementById('aboutPage');
+        const contactsPage = document.getElementById('contactsPage');
+
+        function showPage(pageToShow) {
+            mainPage.classList.add('hidden');
+            aboutPage.classList.remove('active');
+            contactsPage.classList.remove('active');
+            
+            if (pageToShow === 'about') {
+                aboutPage.classList.add('active');
+            } else if (pageToShow === 'contacts') {
+                contactsPage.classList.add('active');
+            } else {
+                mainPage.classList.remove('hidden');
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        aboutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('about');
+        });
+
+        contactsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('contacts');
+        });
+
+        backBtnAbout.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('main');
+        });
+
+        backBtnContacts.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('main');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.lang-selector')) {
+                langDropdown.classList.remove('active');
+            }
+        });
+
+        // Initialize
+        loadProjectsData();
+    </script>
+</body>
+</html>
