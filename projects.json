@@ -2,100 +2,214 @@
   "featured": {
     "en": [
       {
-        "title": "Mergenarium (2023)",
-        "description": "An infinite merge game with emoji characters",
-        "link": "https://github.com/homechaos",
+        "title": "Alien Apocalypse: Survival (2025)",
+        "description": "A large-scale 4X strategy game set in an alien apocalypse setting. My contribution included performance optimization, implementation of video cutscenes, and development of the tutorial system.",
+        "link": "https://apps.apple.com/ru/app/alien-apocalypse-survival/id6739420672",
         "mediaType": "image",
-        "mediaUrl": ""
+        "mediaUrl": "media/alien_apocalypse.jpg"
       },
       {
-        "title": "Featured Project 2",
-        "description": "Description of your best project",
-        "link": "https://example.com",
-        "mediaType": "video",
-        "mediaUrl": ""
+        "title": "Bridge Race (2025)",
+        "description": "An arcade hit with 300M+ downloads! I was responsible for performance optimization and delivering new content updates.",
+        "link": "https://play.google.com/store/apps/details?id=com.Garawell.BridgeRace",
+        "mediaType": "image",
+        "mediaUrl": "media/bridge_race.jpg"
+      },
+      {
+        "title": "School Secrets (2025)",
+        "description": "A narrative-driven detective game featuring puzzles, branching storylines, and a blog-based mechanic. I built this project from scratch all the way to release. My main technical contribution is a flexible, non-linear dialogue system.",
+        "link": "https://play.google.com/store/apps/details?id=com.FMLY.SchoolSecrets",
+        "mediaType": "image",
+        "mediaUrl": "media/gosip_girl.jpg"
+      },
+      {
+        "title": "Mergenarium (2025)",
+        "description": "An infinite emoji merge puzzle. Developed the project from scratch to release. The core of the game is a merge system with 50,000 rules, supported by a custom internal tool I built for game designers to manage and edit rules efficiently.",
+        "link": "https://play.google.com/store/apps/details?id=com.OllieGames.Mergenarium",
+        "mediaType": "image",
+        "mediaUrl": "media/mergenarium.jpg"
+      },
+      {
+        "title": "Perfect Living (2025)",
+        "description": "A mobile life simulator featuring a vast array of actions and events. I developed the project from scratch to release. The standout feature is a global event system that dynamically delivers diverse gameplay scenarios to the players.",
+        "link": "https://play.google.com/store/apps/details?id=com.GG.PerfectLiving",
+        "mediaType": "image",
+        "mediaUrl": "media/perfect_living.jpg"
       }
     ],
     "ru": [
       {
-        "title": "Mergenarium (2023)",
-        "description": "Игра с бесконечным мерджем смайликов",
-        "link": "https://github.com/homechaos",
+        "title": "Alien Apocalypse: Survival (2025)",
+        "description": "Крупный проект в жанре 4X-стратегии в сеттинге инопланетного апокалипсиса. В рамках проекта я занимался оптимизацией, внедрением видеокатсцен, а также разработкой и поддержкой системы туториалов.",
+        "link": "https://apps.apple.com/ru/app/alien-apocalypse-survival/id6739420672",
         "mediaType": "image",
-        "mediaUrl": ""
+        "mediaUrl": "media/alien_apocalypse.jpg"
       },
       {
-        "title": "Избранный проект 2",
-        "description": "Описание вашего лучшего проекта",
-        "link": "https://example.com",
-        "mediaType": "video",
-        "mediaUrl": ""
+        "title": "Bridge Race (2025)",
+        "description": "Аркадный хит с 300+ миллионами скачиваний! В этом проекте я занимался оптимизацией производительности и внедрением нового контента.",
+        "link": "https://play.google.com/store/apps/details?id=com.Garawell.BridgeRace",
+        "mediaType": "image",
+        "mediaUrl": "media/bridge_race.jpg"
+      },
+      {
+        "title": "School Secrets (2025)",
+        "description": "Сюжетный детектив с головоломками, разветвлённым сюжетом и механикой ведения блога. Я реализовал этот проект с нуля до самого релиза. Мой основной вклад — гибкая и масштабируемая система диалогов.",
+        "link": "https://play.google.com/store/apps/details?id=com.FMLY.SchoolSecrets",
+        "mediaType": "image",
+        "mediaUrl": "media/gosip_girl.jpg"
+      },
+      {
+        "title": "Mergenarium (2025)",
+        "description": "Бесконечная головоломка в жанре «мердж» с эмодзи. Реализовал проект с нуля до релиза. Ключевая фича — система мерджа на 50 000 правил и кастомный инструмент для геймдизайнеров, позволяющий быстро редактировать эти правила без участия программиста.",
+        "link": "https://play.google.com/store/apps/details?id=com.OllieGames.Mergenarium",
+        "mediaType": "image",
+        "mediaUrl": "media/mergenarium.jpg"
+      },
+      {
+        "title": "Perfect Living (2025)",
+        "description": "Мобильный симулятор жизни с огромным количеством действий и событий. Разработал проект с нуля до релиза. Ключевая особенность — глобальная система событий, которая динамически генерирует для игроков разнообразные игровые сценарии.",
+        "link": "https://play.google.com/store/apps/details?id=com.GG.PerfectLiving",
+        "mediaType": "image",
+        "mediaUrl": "media/perfect_living.jpg"
       }
     ]
   },
   "all": {
     "en": [
-      {
-        "title": "Mergenarium (2023)",
-        "description": "An infinite merge game with emoji characters",
-        "link": "https://github.com/homechaos",
-        "iconUrl": ""
+            {
+        "title": "Alien Apocalypse: Survival",
+        "description": "4X strategy in an alien apocalypse setting",
+        "link": "https://apps.apple.com/ru/app/alien-apocalypse-survival/id6739420672",
+        "iconUrl": "media/icons/aas.webp"
       },
       {
-        "title": "Project Alpha",
-        "description": "Mobile puzzle game",
-        "link": "https://example.com",
-        "iconUrl": ""
+        "title": "School Secrets",
+        "description": "Narrative-driven blogger detective simulator",
+        "link": "https://play.google.com/store/apps/details?id=com.FMLY.SchoolSecrets",
+        "iconUrl": "media/icons/gosspigirl.webp"
       },
       {
-        "title": "Project Beta",
-        "description": "AR experience application",
-        "link": "https://example.com",
-        "iconUrl": ""
+        "title": "Draw The Line",
+        "description": "Casual minimalist game: ball control via drawing lines",
+        "link": "https://play.google.com/store/apps/details?id=com.friendsgamesincubator.drawtheline",
+        "iconUrl": "media/icons/drawtheline.webp"
       },
       {
-        "title": "Project Gamma",
-        "description": "Educational game for kids",
-        "link": "https://example.com",
-        "iconUrl": ""
+        "title": "Basket Battle",
+        "description": "Casual basketball simulator",
+        "link": "https://play.google.com/store/apps/details?id=com.noorgames.basketbattle",
+        "iconUrl": "media/icons/basketbattle.webp"
       },
       {
-        "title": "Project Delta",
-        "description": "Multiplayer strategy game",
-        "link": "https://example.com",
-        "iconUrl": ""
+        "title": "Bridge Race",
+        "description": "Casual racing game with bridge-building mechanics",
+        "link": "https://play.google.com/store/apps/details?id=com.Garawell.BridgeRace",
+        "iconUrl": "media/icons/bridgerace.webp"
+      },
+      {
+        "title": "Emoji Puzzle",
+        "description": "Emoji puzzle",
+        "link": "https://play.google.com/store/apps/details?id=com.demin.emojipuzzle",
+        "iconUrl": "media/icons/emojipuzzle.webp"
+      },
+      {
+        "title": "Perfect Living",
+        "description": "Mobile life simulator",
+        "link": "https://play.google.com/store/apps/details?id=com.GG.PerfectLiving",
+        "iconUrl": "media/icons/perfectliving.webp"
+      },
+      {
+        "title": "Perent Run",
+        "description": "Play as a parent and guide your child to become a genius or a monster",
+        "link": "https://yandex.ru/games/app/251848#info",
+        "iconUrl": "media/icons/perentrun.webp"
+      },
+      {
+        "title": "Mergenarium",
+        "description": "Infinite emoji merge puzzle",
+        "link": "https://play.google.com/store/apps/details?id=com.OllieGames.Mergenarium",
+        "iconUrl": "media/icons/mergenarium.webp"
+      },
+      {
+        "title": "Destruction Time",
+        "description": "Destroy all the buildings around you!",
+        "link": "https://play.google.com/store/apps/details?id=com.GPG.DestructionTime",
+        "iconUrl": "media/icons/destructiontime.webp"
+      },
+      {
+        "title": "Murder Cleaner",
+        "description": "Clean up the crime scene before anyone finds out what happened",
+        "link": "https://play.google.com/store/apps/details?id=com.GPG.MurderCleaner",
+        "iconUrl": "media/icons/murdercleaner.webp"
       }
     ],
     "ru": [
       {
-        "title": "Mergenarium (2023)",
-        "description": "Игра с бесконечным мерджем смайликов",
-        "link": "https://github.com/homechaos",
-        "iconUrl": ""
+        "title": "Alien Apocalypse: Survival",
+        "description": "4X-стратегия в сеттинге инопланетного апокалипсиса",
+        "link": "https://apps.apple.com/ru/app/alien-apocalypse-survival/id6739420672",
+        "iconUrl": "media/icons/aas.webp"
       },
       {
-        "title": "Проект Альфа",
-        "description": "Мобильная головоломка",
-        "link": "https://example.com",
-        "iconUrl": ""
+        "title": "School Secrets",
+        "description": "Сюжетный симулятор детектива-блогера",
+        "link": "https://play.google.com/store/apps/details?id=com.FMLY.SchoolSecrets",
+        "iconUrl": "media/icons/gosspigirl.webp"
       },
       {
-        "title": "Проект Бета",
-        "description": "AR приложение",
-        "link": "https://example.com",
-        "iconUrl": ""
+        "title": "Draw The Line",
+        "description": "Казуальная минималистичная игра: управление мячом при помощи рисования линий",
+        "link": "https://play.google.com/store/apps/details?id=com.friendsgamesincubator.drawtheline",
+        "iconUrl": "media/icons/drawtheline.webp"
       },
       {
-        "title": "Проект Гамма",
-        "description": "Обучающая игра для детей",
-        "link": "https://example.com",
-        "iconUrl": ""
+        "title": "Basket Battle",
+        "description": "Казуальный баскетбольный симулятор",
+        "link": "https://play.google.com/store/apps/details?id=com.noorgames.basketbattle",
+        "iconUrl": "media/icons/basketbattle.webp"
       },
       {
-        "title": "Проект Дельта",
-        "description": "Многопользовательская стратегия",
-        "link": "https://example.com",
-        "iconUrl": ""
+        "title": "Bridge Race",
+        "description": "Казуальная гонка с механикой строительства мостов",
+        "link": "https://play.google.com/store/apps/details?id=com.Garawell.BridgeRace",
+        "iconUrl": "media/icons/bridgerace.webp"
+      },
+      {
+        "title": "Emoji Puzzle",
+        "description": "Головоломка с эмодзи",
+        "link": "https://play.google.com/store/apps/details?id=com.demin.emojipuzzle",
+        "iconUrl": "media/icons/emojipuzzle.webp"
+      },
+      {
+        "title": "Perfect Living",
+        "description": "Мобильный симулятор жизни",
+        "link": "https://play.google.com/store/apps/details?id=com.GG.PerfectLiving",
+        "iconUrl": "media/icons/perfectliving.webp"
+      },
+      {
+        "title": "Perent Run",
+        "description": "Управляя родителем, доведите ребенка до состояния гения или монстра",
+        "link": "https://yandex.ru/games/app/251848#info",
+        "iconUrl": "media/icons/perentrun.webp"
+      },
+      {
+        "title": "Mergenarium",
+        "description": "Головоломка с бесконечным мерджем эмодзи",
+        "link": "https://play.google.com/store/apps/details?id=com.OllieGames.Mergenarium",
+        "iconUrl": "media/icons/mergenarium.webp"
+      },
+      {
+        "title": "Destruction Time",
+        "description": "Уничтожьте все здания вокруг!",
+        "link": "https://play.google.com/store/apps/details?id=com.GPG.DestructionTime",
+        "iconUrl": "media/icons/destructiontime.webp"
+      },
+      {
+        "title": "Murder Cleaner",
+        "description": "Очистите место преступления, прежде чем кто-либо узнает, что произошло",
+        "link": "https://play.google.com/store/apps/details?id=com.GPG.MurderCleaner",
+        "iconUrl": "media/icons/murdercleaner.webp"
       }
     ]
   }
